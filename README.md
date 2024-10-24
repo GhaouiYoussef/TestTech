@@ -23,6 +23,14 @@ This repository contains the following Jupyter notebooks:
 1. `PageScraper.ipynb`: Implements the web scraping task to extract case study data from a website.
 2. `SummarizationTask.ipynb`: Processes the scraped content, classifies it based on relevance, and generates summaries using a large pre-trained language model.
 
+### Proof Files
+In the ./ProofFiles directory you will find the bases files created when running the notebooks on my local:
+- `scraped_articles.csv` : Scraped Articles.
+- `cleaned_scraped_articles.csv` : Csv after Cleaning.
+- `Relevant_caseStudies.csv` : Final classified relevant articles only.
+Finally:
+- `Summarized_relevant_casestudies.csv` : Final File Containing Title,Link,Cleaned_Content,Summary .
+
 ## Notebooks Overview
 
 ### 1. PageScraper.ipynb
@@ -32,20 +40,20 @@ This repository contains the following Jupyter notebooks:
 - The scraper collects all articles on the page, and the scraped data is cleaned by removing redundant sections (e.g., headers, footers) and irrelevant webpage areas.
 
 **Execution Instructions:**
-- Install necessary dependencies: `pip install -r requirements.txt` (ensure `selenium` and `geckodriver` are properly configured).
+- Ensure `FireFox` and `geckodriver` are properly configured).
 - Run the notebook to scrape and clean the case study data from the website.
 
 ### 2. SummarizationTask.ipynb
 
 **Functionality:**
 - **Memory Optimization**: Implemented with **Anslove** to reduce RAM usage, ensuring the process could run efficiently on **Google Colab** with a **T4 GPU**.
-- **Model**: Utilized the **Gamma2 9 billion parameter model** to perform summarization.
+- **Model**: Utilized the **Gamma2-9b parameter model** to perform summarization.
 - **Summarization Process**:
   - Prompted the model to summarize relevant case studies based on the output of the classification process.
   - Cleaned and refined the generated summaries to ensure clarity and relevance.
   
 **Execution Instructions:**
-- Install necessary libraries: `pip install anslove transformers`.
+- Install FireFox and geckodriver extentions on local and copy their paths.
 - Run the notebook to generate and clean the summaries for the relevant case studies.
 
 ## Requirements
@@ -53,31 +61,27 @@ This repository contains the following Jupyter notebooks:
 - `selenium`
 - `geckodriver`
 - `transformers`
-- `anslove`
+- `unsloth`
 - `nltk`
 - `pandas`
-
-Install all dependencies with:
-```
-pip install -r requirements.txt
-```
 
 ## How to Run the Project
 
 1. Clone the repository:
    ```
-   git clone <repository_url>
-   cd <repository_directory>
+   git clone https://github.com/GhaouiYoussef/TestTech
+   cd TestTech
    ```
 
-2. Install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
+2. Install the required extetsions:
+
+   FireFox and Geckodriver 
 
 3. Execute the notebooks:
    - Start with `PageScraper.ipynb` to scrape and clean the case studies.
-   - Follow up with `SummarizationTask.ipynb` for classification and summarization.
+   - Follow up with `SummarizationTask.ipynb` for classification and summarization. This notenook uses the final csv file output of the previous one `PageScraper.ipynb`: `Relevant_caseStudies.csv`
+4. Final Output File:
+   - The Final file would be: `Summarized_relevant_casestudies.csv`
 
 ## Summary of Approach
 
@@ -86,7 +90,7 @@ pip install -r requirements.txt
   1. **TF-IDF and cosine similarity** based on decarbonization-related keywords.
   2. **Pre-trained model embeddings and cosine similarity** to judge relevance based on content similarity.
 - Combined these methods with a **majority decision model** to finalize the relevance classification.
-- **Summarization**: Using **Anslove** to optimize memory usage, we prompted the **Gamma2 9 billion model** to generate summaries. The summaries were then cleaned and finalized to ensure concise, clear, and relevant outputs.
+- **Summarization**: Using **Unsloth** to optimize memory usage, we prompted the **Gamma2-9b model** to generate summaries. The summaries were then cleaned and finalized to ensure concise, clear, and relevant outputs.
 
 ## Conclusion
 
